@@ -1,1 +1,241 @@
-<h1>나는 홍기호입니다. 테스트</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-06-23 Python 교육일지</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Malgun Gothic", sans-serif;
+            background: #f5f7fb;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .summary {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .schedule {
+            display: grid;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        code {
+            background: #eef2ff;
+            padding: 2px 6px;
+            border-radius: 5px;
+            color: #1e40af;
+        }
+
+        pre {
+            background: #1f2937;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background: #1e293b;
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🐍 Python 교육일지</h1>
+    <p>2026년 6월 23일 수업 내용 정리</p>
+</header>
+
+<div class="container">
+
+    <section class="summary">
+        <h2>📚 학습 주제</h2>
+        <br>
+        <span class="badge">WSL2</span>
+        <span class="badge">VS Code</span>
+        <span class="badge">Git</span>
+        <span class="badge">GitHub</span>
+        <span class="badge">Python</span>
+        <span class="badge">print()</span>
+        <span class="badge">input()</span>
+        <span class="badge">f-string</span>
+    </section>
+
+    <section class="schedule">
+
+        <div class="card">
+            <h2>1교시 - 수업 오리엔테이션</h2>
+            <ul>
+                <li>교육 과정 소개</li>
+                <li>학습 방법 안내</li>
+                <li>평가 기준 설명</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>2교시 - WSL2 및 VS Code 설치</h2>
+            <ul>
+                <li>WSL2 개념 이해</li>
+                <li>WSL2 설치</li>
+                <li>VS Code 설치</li>
+                <li>VS Code와 WSL 연동</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3교시 - Git & GitHub</h2>
+            <ul>
+                <li>Git 설치</li>
+                <li>Git 기본 개념</li>
+                <li>GitHub 계정 생성</li>
+                <li>Repository 생성</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>4교시 - Python 기초</h2>
+            <ul>
+                <li>Python 소개</li>
+                <li>실행 방법 이해</li>
+                <li>기본 문법 학습</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>5교시 - print() 함수</h2>
+            <p>화면에 데이터를 출력하는 함수</p>
+
+            <pre>
+print("Hello Python")
+print("이름:", "홍길동")
+            </pre>
+        </div>
+
+        <div class="card">
+            <h2>6교시 - 변수와 자료형</h2>
+            <ul>
+                <li>int (정수)</li>
+                <li>float (실수)</li>
+                <li>str (문자열)</li>
+                <li>bool (논리형)</li>
+            </ul>
+
+            <pre>
+name = "홍길동"
+age = 20
+height = 175.5
+is_student = True
+            </pre>
+        </div>
+
+        <div class="card">
+            <h2>7교시 - 연산자와 input()</h2>
+            <ul>
+                <li>산술 연산자</li>
+                <li>비교 연산자</li>
+                <li>논리 연산자</li>
+                <li>입력 함수 활용</li>
+            </ul>
+
+            <pre>
+name = input("이름을 입력하세요: ")
+print(name)
+            </pre>
+        </div>
+
+        <div class="card">
+            <h2>8교시 - 문자열, f-string, format()</h2>
+
+            <pre>
+name = "홍길동"
+age = 20
+
+print(f"이름은 {name}이고 나이는 {age}세입니다.")
+
+print("이름은 {}이고 나이는 {}세입니다."
+      .format(name, age))
+            </pre>
+        </div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Python 교육일지 | GitHub Pages Portfolio</p>
+</footer>
+
+</body>
+</html>
