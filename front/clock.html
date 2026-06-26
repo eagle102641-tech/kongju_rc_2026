@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탁상 시계</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #112d4e, #3f72af);
+            color: #eef2ff;
+            font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+        }
+
+        .clock-box {
+            width: min(420px, 90vw);
+            padding: 32px;
+            border-radius: 28px;
+            background: rgba(17, 45, 78, 0.92);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
+
+        .clock-title {
+            font-size: 1.4rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #c3dafe;
+            margin-bottom: 18px;
+        }
+
+        .time {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
+        }
+
+        .date {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 24px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 28px;
+        }
+
+        .panel {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 12px;
+        }
+
+        .panel-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 16px;
+            border-radius: 18px;
+        }
+
+        .panel-item strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .panel-item span {
+            font-size: 1.1rem;
+            letter-spacing: 0.01em;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-box">
+        <div class="clock-title">탁상 시계</div>
+        <div class="time" id="clockTime">00:00:00</div>
+        <div class="date" id="clockDate">YYYY-MM-DD</div>
+        <div class="subtitle">현재 시간을 실시간으로 보여줍니다.</div>
+        <div class="panel">
+            <div class="panel-item">
+                <strong>요일</strong>
+                <span id="clockDay">요일</span>
+            </div>
+            <div class="panel-item">
+                <strong>24시간</strong>
+                <span id="clock24">00:00</span>
+            </div>
+            <div class="panel-item">
+                <strong>AM / PM</strong>
+                <span id="clockAmPm">AM</span>
+            </div>
+            <div class="panel-item">
+                <strong>타임존</strong>
+                <span id="clockZone">Local</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const timeEl = document.getElementById('clockTime');
+        const dateEl = document.getElementById('clockDate');
+        const dayEl = document.getElementById('clockDay');
+        const tzEl = document.getElementById('clockZone');
+        const clock24El = document.getElementById('clock24');
+        const ampmEl = document.getElementById('clockAmPm');
+
+        const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+
+        function pad(value) {
+            return value.toString().padStart(2, '0');
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const ampm = hours < 12 ? 'AM' : 'PM';
+            const hour12 = hours % 12 || 12;
+
+            timeEl.textContent = `${pad(hour12)}:${pad(minutes)}:${pad(seconds)}`;
+            dateEl.textContent = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+            dayEl.textContent = days[now.getDay()];
+            clock24El.textContent = `${pad(hours)}:${pad(minutes)}`;
+            ampmEl.textContent = ampm;
+            tzEl.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local';
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
