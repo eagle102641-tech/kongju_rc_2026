@@ -1,11 +1,17 @@
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
-    QLabel,
-    QMainWindow,
-    QPushButton,
-    QVBoxLayout,
     QWidget,
+    QMainWindow,
+    QHBoxLayout,
+    QVBoxLayout,
+    QLabel,
+    QSlider,
 )
+
+from PySide6.QtCore import Qt
+
+from ui.status_widget import StatusWidget
+from ui.control_widget import ControlWidget
+from ui.log_widget import LogWidget
 
 
 class MainWindow(QMainWindow):
@@ -15,31 +21,62 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("RC Car Controller")
 
-        self.resize(900, 700)
+        self.resize(1000,700)
 
-        self.init_ui()
+        self.build_ui()
 
-    def init_ui(self):
+    def build_ui(self):
+
+        root = QWidget()
+
+        main_layout = QVBoxLayout()
 
         title = QLabel("RC CAR CONTROLLER")
 
         title.setAlignment(Qt.AlignCenter)
 
         title.setStyleSheet("""
-            font-size:28px;
-            font-weight:bold;
+        font-size:28px;
+        font-weight:bold;
         """)
 
-        button = QPushButton("Forward")
+        top_layout = QHBoxLayout()
 
-        layout = QVBoxLayout()
+        self.status = StatusWidget()
 
-        layout.addWidget(title)
+        self.control = ControlWidget()
 
-        layout.addWidget(button)
+        top_layout.addWidget(self.status,1)
+        top_layout.addWidget(self.control,2)
 
-        container = QWidget()
+        speed_title = QLabel("Speed")
 
-        container.setLayout(layout)
+        self.slider = QSlider(Qt.Horizontal)
 
-        self.setCentralWidget(container)
+        self.slider.setRange(0,100)
+
+        self.slider.setValue(50)
+
+        self.log = LogWidget()
+
+        main_layout.addWidget(title)
+
+        main_layout.addLayout(top_layout)
+
+        main_layout.addWidget(speed_title)
+
+        main_layout.addWidget(self.slider)
+
+        main_layout.addWidget(self.log)
+
+        root.setLayout(main_layout)
+
+        self.setCentralWidget(root)
+
+        self.control.command_clicked.connect(self.button_pressed)
+
+    def button_pressed(self, command):
+
+        self.log.add_log(command)
+
+        self.status.command.setText(f"Current : {command}")
