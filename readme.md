@@ -33,3 +33,15 @@
 6교시: destructor, del
 7교시: property
 8교시: 모듈 및 배포
+
+2026-06-26
+
+---
+1교시: os,sys
+2교시: urllib,time
+3교시: frame, package
+4교시: pip
+5교시: uv
+6교시: ui 제작 mini project
+7교시: ui 제작 mini project
+8교시: ui 제작 mini project
