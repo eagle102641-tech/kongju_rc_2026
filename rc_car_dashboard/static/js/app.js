@@ -45,3 +45,75 @@ slider.oninput = async function () {
     });
 
 }
+const joystick = nipplejs.create({
+
+    zone: document.getElementById("joystick"),
+
+    mode: "static",
+
+    position: {
+
+        left: "50%",
+
+        top: "50%"
+
+    },
+
+    color: "blue"
+
+});
+
+
+joystick.on("move", async function(evt,data){
+
+    const x=data.vector.x;
+
+    const y=data.vector.y;
+
+    addLog(
+        "x:"+x.toFixed(2)+
+        " y:"+y.toFixed(2)
+    );
+
+    await fetch("/api/joystick",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            x:x,
+
+            y:y
+
+        })
+
+    });
+
+});
+
+
+joystick.on("end", async function(){
+
+    await fetch("/api/joystick",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            x:0,
+
+            y:0
+
+        })
+
+    });
+
+});

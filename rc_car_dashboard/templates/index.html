@@ -8,7 +8,10 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/nipplejs@0.10.2/dist/nipplejs.min.js"></script>
 
+<script src="{{ url_for('static',
+filename='js/app.js') }}"></script>
 <body>
 
 <div class="container">
@@ -52,29 +55,13 @@
     </div>
 
 
-    <div class="control">
+  <div class="control">
 
-        <h2>Control</h2>
+    <h2>Joystick</h2>
 
-        <div class="pad">
+    <div id="joystick"></div>
 
-            <button onclick="sendCommand('forward')">▲</button>
-
-            <div></div>
-
-            <button onclick="sendCommand('left')">◀</button>
-
-            <button onclick="sendCommand('stop')">■</button>
-
-            <button onclick="sendCommand('right')">▶</button>
-
-            <div></div>
-
-            <button onclick="sendCommand('backward')">▼</button>
-
-        </div>
-
-    </div>
+</div>
 
 
     <div class="speed">

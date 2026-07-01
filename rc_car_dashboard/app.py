@@ -9,6 +9,16 @@ app.register_blueprint(drive_bp)
 def index():
     return render_template("index.html")
 
+@app.route("/api/joystick", methods=["POST"])
+def joystick():
 
+    data=request.get_json()
+
+    print(data)
+
+    return {
+        "success":True
+    }
+    
 if __name__ == "__main__":
     app.run(port=5000)

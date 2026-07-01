@@ -159,3 +159,19 @@ input{
     overflow:auto;
 
 }
+
+#joystick{
+
+    width:320px;
+
+    height:320px;
+
+    margin:auto;
+
+    background:#f7f7f7;
+
+    border-radius:50%;
+
+    position:relative;
+
+}
