@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>RC Car Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>RC CAR DASHBOARD</h1>
+
+<div class="card">
+
+<p>Connection :
+<span id="connection">Connected</span></p>
+
+<p>Battery :
+<span id="battery">100%</span></p>
+
+<p>Speed :
+<span id="speed">0%</span></p>
+
+<button id="startBtn">
+
+START
+
+</button>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static',
+filename='js/app.js') }}"></script>
+
+</body>
+
+</html>

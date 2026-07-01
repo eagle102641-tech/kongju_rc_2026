@@ -1,6 +1,7 @@
 import asyncio
 import time
 
+
 async def task(name, duration):
     print("쓰레드 시작", name)
     await asyncio.sleep(duration)
