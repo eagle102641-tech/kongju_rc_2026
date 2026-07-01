@@ -1,6 +1,8 @@
 from flask import Flask, render_template
+from api.drive import bp as drive_bp
 
 app = Flask(__name__)
+app.register_blueprint(drive_bp)
 
 
 @app.route("/")
