@@ -1,57 +1,161 @@
 body{
 
-background:#f2f4f7;
+    margin:0;
 
-font-family:Arial;
+    background:#eef2f7;
 
-margin:0;
+    font-family:Arial;
 
 }
 
 .container{
 
-width:900px;
+    width:1200px;
 
-margin:auto;
-
-padding-top:50px;
+    margin:auto;
 
 }
 
-.card{
+h1{
 
-background:white;
+    text-align:center;
 
-padding:30px;
+    padding:20px;
 
-border-radius:15px;
+}
 
-box-shadow:0px 5px 20px rgba(0,0,0,0.15);
+.top{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.camera{
+
+    flex:2;
+
+}
+
+.status{
+
+    flex:1;
+
+}
+
+.camera-box{
+
+    height:300px;
+
+    background:white;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+}
+
+.status{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.control{
+
+    margin-top:20px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+.pad{
+
+    display:grid;
+
+    grid-template-columns:100px 100px 100px;
+
+    justify-content:center;
+
+    gap:15px;
 
 }
 
 button{
 
-width:180px;
+    width:100px;
 
-height:60px;
+    height:70px;
 
-font-size:20px;
+    font-size:25px;
 
-border:none;
+    border:none;
 
-border-radius:12px;
+    border-radius:12px;
 
-background:#2563eb;
+    background:#2563eb;
 
-color:white;
+    color:white;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
 
 button:hover{
 
-background:#1d4ed8;
+    background:#1d4ed8;
+
+}
+
+.speed{
+
+    margin-top:20px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+input{
+
+    width:100%;
+
+}
+
+.log{
+
+    margin-top:20px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+#logBox{
+
+    height:150px;
+
+    overflow:auto;
 
 }

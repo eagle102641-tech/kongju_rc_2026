@@ -2,40 +2,106 @@
 <html lang="ko">
 
 <head>
+    <meta charset="UTF-8">
+    <title>RC CAR Dashboard</title>
 
-<meta charset="UTF-8">
-
-<title>RC Car Dashboard</title>
-
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}">
-
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>RC CAR DASHBOARD</h1>
+    <h1>🚗 RC CAR DASHBOARD</h1>
 
-<div class="card">
+    <div class="top">
 
-<p>Connection :
-<span id="connection">Connected</span></p>
+        <div class="camera">
 
-<p>Battery :
-<span id="battery">100%</span></p>
+            <h2>📷 Camera</h2>
 
-<p>Speed :
-<span id="speed">0%</span></p>
+            <div class="camera-box">
 
-<button id="startBtn">
+                Camera OFF
 
-START
+            </div>
 
-</button>
+        </div>
 
-</div>
+        <div class="status">
+
+            <h2>📊 Status</h2>
+
+            <p>🟢 Connected</p>
+
+            <p>🔋 Battery :
+                <span id="battery">100%</span>
+            </p>
+
+            <p>🚗 Speed :
+                <span id="speedText">50%</span>
+            </p>
+
+            <p>🎮 Mode :
+                Manual
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="control">
+
+        <h2>Control</h2>
+
+        <div class="pad">
+
+            <button onclick="sendCommand('forward')">▲</button>
+
+            <div></div>
+
+            <button onclick="sendCommand('left')">◀</button>
+
+            <button onclick="sendCommand('stop')">■</button>
+
+            <button onclick="sendCommand('right')">▶</button>
+
+            <div></div>
+
+            <button onclick="sendCommand('backward')">▼</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="speed">
+
+        <h2>Speed</h2>
+
+        <input
+                id="speedSlider"
+                type="range"
+                min="0"
+                max="100"
+                value="50">
+
+    </div>
+
+
+    <div class="log">
+
+        <h2>LOG</h2>
+
+        <div id="logBox">
+
+            Dashboard Ready
+
+        </div>
+
+    </div>
 
 </div>
 
