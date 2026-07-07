@@ -1,0 +1,191 @@
+import time
+import math
+import csv
+import matplotlib.pyplot as plt
+from pop import Cds
+
+# ==========================
+# 초기 설정
+# ==========================
+
+cds = Cds(7)
+
+data_list = []
+
+x = 0.0
+y = 0.0
+theta = math.pi / 2
+
+dt = 0.1
+
+# 속도 보정계수
+# AutoCar 속도(20~99)를 m/s로 변환
+SPEED_SCALE = 0.01
+
+last_print_time = time.time()
+
+print("데이터 수집 시작")
+print("정지 버튼(■)을 누르면 종료하세요.")
+
+start_time = time.time()
+
+try:
+
+    while True:
+
+        # -------------------------
+        # 현재 차량 정보
+        # -------------------------
+
+        steering = car.steering
+
+        speed = car.getSpeed()      # 실제 속도 사용
+
+        # m/s 변환
+        v = speed * SPEED_SCALE
+
+        # 회전속도
+        omega = -steering
+
+        # -------------------------
+        # 위치 추정
+        # -------------------------
+
+        theta += omega * dt
+
+        x += v * math.cos(theta) * dt
+
+        y += v * math.sin(theta) * dt
+
+        # -------------------------
+        # CDS
+        # -------------------------
+
+        cds_value = cds.read()
+
+        elapsed = time.time() - start_time
+
+        # 저장
+        data_list.append({
+
+            "Time": elapsed,
+            "X": x,
+            "Y": y,
+            "Heading": math.degrees(theta),
+            "Speed": speed,
+            "Steering": steering,
+            "CDS": cds_value
+
+        })
+
+        if time.time()-last_print_time > 1:
+
+            print(
+                f"T={elapsed:.1f}s "
+                f"Pos=({x:.2f},{y:.2f}) "
+                f"Speed={speed} "
+                f"Steer={steering:.2f} "
+                f"CDS={cds_value}"
+            )
+
+            last_print_time=time.time()
+
+        time.sleep(dt)
+
+except KeyboardInterrupt:
+
+    print("데이터 수집 종료")
+
+# ==========================
+# CSV 저장
+# ==========================
+
+filename="cds_sensor_data.csv"
+
+with open(filename,"w",newline="",encoding="utf-8") as f:
+
+    writer=csv.DictWriter(
+        f,
+        fieldnames=[
+            "Time",
+            "X",
+            "Y",
+            "Heading",
+            "Speed",
+            "Steering",
+            "CDS"
+        ]
+    )
+
+    writer.writeheader()
+
+    writer.writerows(data_list)
+
+print(filename,"저장 완료")
+
+# ==========================
+# 그래프
+# ==========================
+
+x_vals=[d["X"] for d in data_list]
+y_vals=[d["Y"] for d in data_list]
+cds_vals=[d["CDS"] for d in data_list]
+
+plt.figure(figsize=(10,8))
+
+# 주행경로
+plt.plot(
+    x_vals,
+    y_vals,
+    color="gray",
+    linewidth=1,
+    alpha=0.4
+)
+
+# 위치별 조도
+scatter=plt.scatter(
+
+    x_vals,
+    y_vals,
+
+    c=cds_vals,
+
+    cmap="turbo",
+
+    s=60,
+
+    edgecolors="black"
+
+)
+
+plt.scatter(
+    x_vals[0],
+    y_vals[0],
+    color="green",
+    s=120,
+    label="START"
+)
+
+plt.scatter(
+    x_vals[-1],
+    y_vals[-1],
+    color="red",
+    s=120,
+    label="END"
+)
+
+plt.colorbar(scatter,label="CDS Value")
+
+plt.title("Playground Light Map")
+
+plt.xlabel("X Position (m)")
+
+plt.ylabel("Y Position (m)")
+
+plt.axis("equal")
+
+plt.grid(True)
+
+plt.legend()
+
+plt.show()
